@@ -14,6 +14,7 @@ export default function CustomCursor({ enabled = true }) {
   const rafRef = useRef(0);
   const visibleRef = useRef(false);
   const hoverRef = useRef(false);
+  const mediaRef = useRef(false);
 
   const targetRef = useRef({ x: 0, y: 0 });
   const ringPosRef = useRef({ x: 0, y: 0 });
@@ -47,6 +48,12 @@ export default function CustomCursor({ enabled = true }) {
       root.dataset.hover = v ? "1" : "0";
     };
 
+    const setMedia = (v) => {
+      if (mediaRef.current === v) return;
+      mediaRef.current = v;
+      root.dataset.media = v ? "1" : "0";
+    };
+
     const onMove = (e) => {
       targetRef.current.x = e.clientX;
       targetRef.current.y = e.clientY;
@@ -55,13 +62,27 @@ export default function CustomCursor({ enabled = true }) {
 
     const hoverSelector =
       "a, button, [data-cursor='hover'], [data-card], input, textarea, select";
+    const mediaSelector = "img, picture, video, canvas";
 
     const onOver = (e) => {
+      const isMedia = !!e.target?.closest?.(mediaSelector);
+      setMedia(isMedia);
+      if (isMedia) {
+        setHover(false);
+        return;
+      }
       if (e.target?.closest?.(hoverSelector)) setHover(true);
     };
 
     const onOut = (e) => {
-      if (!e.relatedTarget?.closest?.(hoverSelector)) setHover(false);
+      const next = e.relatedTarget;
+      const isMedia = !!next?.closest?.(mediaSelector);
+      setMedia(isMedia);
+      if (isMedia) {
+        setHover(false);
+        return;
+      }
+      if (!next?.closest?.(hoverSelector)) setHover(false);
     };
 
     const onLeaveWindow = () => setVisible(false);
@@ -78,7 +99,7 @@ export default function CustomCursor({ enabled = true }) {
       ringPosRef.current.y = lerp(ringPosRef.current.y, y, 0.18);
 
       dot.style.transform = `translate3d(${dotPosRef.current.x}px, ${dotPosRef.current.y}px, 0) translate(-50%, -50%)`;
-      ring.style.transform = `translate3d(${ringPosRef.current.x}px, ${ringPosRef.current.y}px, 0) translate(-50%, -50%) scale(${hoverRef.current ? 1.08 : 1})`;
+      ring.style.transform = `translate3d(${ringPosRef.current.x}px, ${ringPosRef.current.y}px, 0) translate(-50%, -50%) scale(${hoverRef.current && !mediaRef.current ? 1.15 : 1})`;
 
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -114,7 +135,7 @@ export default function CustomCursor({ enabled = true }) {
   return (
     <div
       ref={rootRef}
-      className="pointer-events-none fixed left-0 top-0 z-50 hidden opacity-0 md:block"
+      className="pointer-events-none fixed left-0 top-0 z-999 hidden opacity-0 md:block"
       aria-hidden="true"
     >
       <div ref={ringRef} className="cursor-ring" />

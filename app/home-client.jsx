@@ -13,6 +13,10 @@ import TestimonialsSection from "./components/home/TestimonialsSection";
 import ContactSection from "./components/home/ContactSection";
 import HomeFooter from "./components/home/HomeFooter";
 
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
 
@@ -39,6 +43,17 @@ export default function HomeClient() {
   const rootRef = useRef(null);
   const tiltActiveRef = useRef(null);
   const tiltRafRef = useRef(0);
+  const bedRafRef = useRef(0);
+  const bedRef = useRef({
+    x: 0.5,
+    y: 0.5,
+    px: 0,
+    py: 0,
+    tx: 0.5,
+    ty: 0.5,
+    tpx: 0,
+    tpy: 0,
+  });
 
   const navLinks = useMemo(
     () => [
@@ -275,6 +290,39 @@ export default function HomeClient() {
 
     if (reducedMotion) return;
 
+    const bed = bedRef.current;
+
+    const applyBed = () => {
+      const b = bed;
+
+      b.x = lerp(b.x, b.tx, 0.12);
+      b.y = lerp(b.y, b.ty, 0.12);
+      b.px = lerp(b.px, b.tpx, 0.12);
+      b.py = lerp(b.py, b.tpy, 0.12);
+
+      root.style.setProperty("--gx", b.x.toFixed(4));
+      root.style.setProperty("--gy", b.y.toFixed(4));
+      root.style.setProperty("--gpx", b.px.toFixed(4));
+      root.style.setProperty("--gpy", b.py.toFixed(4));
+
+      const done =
+        Math.abs(b.x - b.tx) < 0.001 &&
+        Math.abs(b.y - b.ty) < 0.001 &&
+        Math.abs(b.px - b.tpx) < 0.001 &&
+        Math.abs(b.py - b.tpy) < 0.001;
+
+      if (!done) {
+        bedRafRef.current = requestAnimationFrame(applyBed);
+      } else {
+        bedRafRef.current = 0;
+      }
+    };
+
+    const startBed = () => {
+      if (bedRafRef.current) return;
+      bedRafRef.current = requestAnimationFrame(applyBed);
+    };
+
     const clearCard = (card) => {
       if (!card) return;
       card.removeAttribute("data-tilt");
@@ -294,10 +342,12 @@ export default function HomeClient() {
       const gy = e.clientY / Math.max(1, window.innerHeight);
       const gpx = gx - 0.5;
       const gpy = gy - 0.5;
-      root.style.setProperty("--gx", gx.toFixed(4));
-      root.style.setProperty("--gy", gy.toFixed(4));
-      root.style.setProperty("--gpx", gpx.toFixed(4));
-      root.style.setProperty("--gpy", gpy.toFixed(4));
+
+      bed.tx = gx;
+      bed.ty = gy;
+      bed.tpx = gpx;
+      bed.tpy = gpy;
+      startBed();
 
       const next = e.target?.closest?.("[data-card]");
       if (!next) {
@@ -347,10 +397,12 @@ export default function HomeClient() {
       tiltRafRef.current = 0;
       clearCard(tiltActiveRef.current);
       tiltActiveRef.current = null;
-      root.style.setProperty("--gx", "0.5");
-      root.style.setProperty("--gy", "0.5");
-      root.style.setProperty("--gpx", "0");
-      root.style.setProperty("--gpy", "0");
+
+      bed.tx = 0.5;
+      bed.ty = 0.5;
+      bed.tpx = 0;
+      bed.tpy = 0;
+      startBed();
     };
 
     root.addEventListener("pointermove", onMove, { passive: true });
@@ -358,7 +410,28 @@ export default function HomeClient() {
     return () => {
       root.removeEventListener("pointermove", onMove);
       root.removeEventListener("pointerleave", onLeaveRoot);
-      onLeaveRoot();
+
+      if (tiltRafRef.current) cancelAnimationFrame(tiltRafRef.current);
+      tiltRafRef.current = 0;
+      if (bedRafRef.current) cancelAnimationFrame(bedRafRef.current);
+      bedRafRef.current = 0;
+
+      clearCard(tiltActiveRef.current);
+      tiltActiveRef.current = null;
+
+      const b = bed;
+      b.x = 0.5;
+      b.y = 0.5;
+      b.px = 0;
+      b.py = 0;
+      b.tx = 0.5;
+      b.ty = 0.5;
+      b.tpx = 0;
+      b.tpy = 0;
+      root.style.setProperty("--gx", "0.5");
+      root.style.setProperty("--gy", "0.5");
+      root.style.setProperty("--gpx", "0");
+      root.style.setProperty("--gpy", "0");
     };
   }, [reducedMotion]);
 
