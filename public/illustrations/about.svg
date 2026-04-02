@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000" viewBox="0 0 1200 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="blob" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a5b4fc"/>
+      <stop offset="1" stop-color="#c7d2fe"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1000" rx="32" fill="url(#bg)"/>
+
+  <!-- Blob behind portrait -->
+  <path d="M280 360c-40-160 150-300 330-260 160 35 280 170 250 330-30 165-190 250-340 240-135-9-210-90-240-310Z" fill="url(#blob)" opacity="0.65"/>
+
+  <!-- Portrait placeholder -->
+  <g transform="translate(350 150)">
+    <circle cx="250" cy="170" r="120" fill="#f8d4b4"/>
+    <path d="M155 185c45-85 190-95 250-10v100H155z" fill="#111827"/>
+
+    <!-- suit -->
+    <path d="M80 650c40-220 160-310 420-310s380 90 420 310v120H80z" fill="#0f172a"/>
+    <path d="M370 350 250 560 130 350c40-20 85-30 120-30h120c35 0 80 10 120 30Z" fill="#111827"/>
+    <path d="M250 560 200 650h100z" fill="#e5e7eb"/>
+
+    <!-- shirt -->
+    <path d="M250 330c70 0 120 35 120 35l-120 220-120-220s50-35 120-35Z" fill="#f3f4f6"/>
+    <path d="M250 470 210 430l40-40 40 40Z" fill="#cbd5e1"/>
+  </g>
+
+  <!-- subtle UI dots -->
+  <g opacity="0.35" fill="#94a3b8">
+    <circle cx="105" cy="110" r="6"/>
+    <circle cx="130" cy="110" r="6"/>
+    <circle cx="155" cy="110" r="6"/>
+  </g>
+</svg>
