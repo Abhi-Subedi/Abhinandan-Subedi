@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Body Care & Hygiene Routine</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #fafaf9; color: #1a1a1a; padding: 24px 20px; max-width: 680px; margin: auto; }
+  h1 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #888; margin-bottom: 24px; line-height: 1.5; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab { padding: 7px 16px; border-radius: 20px; border: 0.5px solid #e0e0da; font-size: 13px; font-weight: 500; cursor: pointer; background: #fff; color: #888; transition: all 0.15s; }
+  .tab.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #aaa; margin: 20px 0 10px; }
+  .card { border: 0.5px solid #e5e5e0; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; background: #fff; }
+  .card.highlight { border-color: #9FE1CB; background: #f0fdf8; }
+  .card.warn { border-color: #F5C4B3; background: #fff7f5; }
+  .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .icon { font-size: 18px; }
+  .card-title { font-size: 14px; font-weight: 500; }
+  .time-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #f1efe8; color: #5f5e5a; margin-left: auto; font-weight: 500; }
+  .card-body { font-size: 13px; color: #555; line-height: 1.6; }
+  .step { display: flex; gap: 8px; margin-bottom: 5px; }
+  .step-num { color: #ccc; flex-shrink: 0; font-size: 13px; }
+  .product-box { background: #f7f7f5; border-radius: 8px; padding: 10px 12px; margin-top: 10px; }
+  .product-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #bbb; margin-bottom: 6px; }
+  .product { font-size: 12px; color: #666; margin-bottom: 3px; display: flex; gap: 6px; }
+  .product span { color: #bbb; }
+  .weekly-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rule-box { border: 0.5px solid #e5e5e0; border-radius: 12px; padding: 14px 16px; margin-top: 8px; background: #f7f7f5; }
+  .rule-title { font-size: 13px; font-weight: 500; margin-bottom: 10px; }
+  .rule { font-size: 13px; color: #666; margin-bottom: 6px; line-height: 1.5; display: flex; gap: 8px; }
+  .rule span { color: #ccc; flex-shrink: 0; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 6px; font-weight: 500; display: inline-block; margin-top: 4px; }
+  .t-green { background: #e1f5ee; color: #085041; }
+  .t-amber { background: #faeeda; color: #854f0b; }
+  .t-red { background: #faece7; color: #712b13; }
+  .t-blue { background: #e6f1fb; color: #185fa5; }
+  .expand-btn { font-size: 12px; color: #888; background: none; border: 0.5px solid #e0e0da; border-radius: 6px; padding: 4px 10px; cursor: pointer; margin-top: 8px; }
+  .detail { display: none; margin-top: 10px; border-top: 0.5px solid #f0f0ea; padding-top: 10px; }
+  .detail.open { display: block; }
+</style>
+</head>
+<body>
+
+<h1>Full Body Care & Hygiene</h1>
+<p class="subtitle">Built for a 16-year-old male. Realistic products, realistic time, real results. Tap each section to see details.</p>
+
+<div class="tabs">
+  <button class="tab active" onclick="show('morning')">☀️ Morning</button>
+  <button class="tab" onclick="show('night')">🌙 Night</button>
+  <button class="tab" onclick="show('weekly')">📅 Weekly</button>
+  <button class="tab" onclick="show('products')">🛒 Products</button>
+</div>
+
+<!-- MORNING -->
+<div id="morning" class="panel active">
+  <div class="section-label">Morning routine — 15 minutes total</div>
+
+  <div class="card highlight">
+    <div class="card-header">
+      <span class="icon">🚿</span>
+      <span class="card-title">Shower — cold or lukewarm</span>
+      <span class="time-badge">7 min</span>
+    </div>
+    <div class="card-body">
+      <div class="step"><span class="step-num">1.</span> Wet entire body. Use a body wash or soap — work from top to bottom.</div>
+      <div class="step"><span class="step-num">2.</span> Focus on armpits, groin, feet, behind ears — these are the odor zones most people miss.</div>
+      <div class="step"><span class="step-num">3.</span> Shampoo hair only if washing that day (not every day — see weekly tab).</div>
+      <div class="step"><span class="step-num">4.</span> End with 30 seconds of cold water. Closes pores, wakes your brain, reduces body odor.</div>
+      <span class="tag t-green">Cold finish = less odor throughout day</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🫧</span>
+      <span class="card-title">Face wash</span>
+      <span class="time-badge">1 min</span>
+    </div>
+    <div class="card-body">
+      <div class="step"><span class="step-num">1.</span> Use a gentle face wash — not soap, not body wash. Face skin is different.</div>
+      <div class="step"><span class="step-num">2.</span> Wet face, apply face wash, massage gently in circles for 30 seconds.</div>
+      <div class="step"><span class="step-num">3.</span> Rinse with cold water. Pat dry — never rub. Rubbing causes irritation.</div>
+      <button class="expand-btn" onclick="toggle('acne')">▾ Acne tips</button>
+      <div class="detail" id="acne">
+        <div class="step"><span class="step-num">→</span> Never pop pimples with dirty hands. It spreads bacteria and causes scarring.</div>
+        <div class="step"><span class="step-num">→</span> Change your pillowcase every 3–4 days. Your face rests on it for 7 hours.</div>
+        <div class="step"><span class="step-num">→</span> Don't over-wash. Washing more than twice a day strips natural oils and makes acne worse.</div>
+        <div class="step"><span class="step-num">→</span> Drink more water. Seriously. Most teenage acne is made worse by dehydration.</div>
+        <span class="tag t-amber">Touch your face less during the day</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">💧</span>
+      <span class="card-title">Moisturizer (optional but smart)</span>
+      <span class="time-badge">30 sec</span>
+    </div>
+    <div class="card-body">
+      Apply a small amount of light moisturizer after washing face. Even if skin feels normal now — moisturizer prevents early aging and keeps skin balanced. Use one that says "non-comedogenic" (won't clog pores).
+      <br><br>
+      <span class="tag t-blue">Takes 30 seconds, makes a visible difference in 2 weeks</span>
+    </div>
+  </div>
+
+  <div class="card highlight">
+    <div class="card-header">
+      <span class="icon">🦷</span>
+      <span class="card-title">Teeth — the most underrated hygiene habit</span>
+      <span class="time-badge">3 min</span>
+    </div>
+    <div class="card-body">
+      <div class="step"><span class="step-num">1.</span> Brush for a full 2 minutes — most people do 30 seconds. Use a timer once to check yourself.</div>
+      <div class="step"><span class="step-num">2.</span> Brush tongue. Bad breath is 80% tongue bacteria, not teeth.</div>
+      <div class="step"><span class="step-num">3.</span> Rinse with mouthwash for 30 seconds if you have it.</div>
+      <button class="expand-btn" onclick="toggle('teeth')">▾ Why this matters beyond hygiene</button>
+      <div class="detail" id="teeth">
+        Your smile and breath are the first things people notice when you speak. You want to improve communication skills — bad breath destroys confidence in conversation before you say a single word. This is non-negotiable.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🧴</span>
+      <span class="card-title">Deodorant — immediately after shower</span>
+      <span class="time-badge">30 sec</span>
+    </div>
+    <div class="card-body">
+      Apply to clean, dry armpits right after showering — before you get dressed. This is the correct order. Applying over sweat or damp skin doesn't work properly.
+      <br><br>
+      <span class="tag t-green">Apply before getting dressed, not after</span>
+      <span class="tag t-amber">Reapply midday if needed at college</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">✂️</span>
+      <span class="card-title">Nails + appearance check</span>
+      <span class="time-badge">1 min</span>
+    </div>
+    <div class="card-body">
+      Quick check in the mirror before leaving. Clean nails, no visible dirt, collar straight, hair set. People judge appearance in 3 seconds. You're building a public presence — this matters more than people admit.
+    </div>
+  </div>
+</div>
+
+<!-- NIGHT -->
+<div id="night" class="panel">
+  <div class="section-label">Night routine — 10 minutes total</div>
+
+  <div class="card highlight">
+    <div class="card-header">
+      <span class="icon">🦷</span>
+      <span class="card-title">Brush teeth again — more important than morning</span>
+      <span class="time-badge">3 min</span>
+    </div>
+    <div class="card-body">
+      Night brushing is actually more important than morning. During the day you eat, drink, accumulate bacteria. If you sleep without brushing, bacteria sit on your teeth for 8 hours. That's what causes cavities and gum disease.
+      <br><br>
+      <div class="step"><span class="step-num">1.</span> Brush 2 minutes + tongue.</div>
+      <div class="step"><span class="step-num">2.</span> Floss at least 3x a week — gum disease starts between teeth where brushes don't reach.</div>
+      <div class="step"><span class="step-num">3.</span> Mouthwash optional but good.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">🫧</span>
+      <span class="card-title">Face wash — remove the day</span>
+      <span class="time-badge">1 min</span>
+    </div>
+    <div class="card-body">
+      Same as morning. Removes sweat, pollution, and oil that built up during the day. If you skip this, all of that sits on your skin while you sleep — directly into your pillow, then back onto your face. This is why acne gets worse.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">💧</span>
+      <span class="card-title">Moisturizer at night</span>
+      <span class="time-badge">30 sec</span>
+    </div>
+    <div class="card-body">
+      Night is when skin repairs itself. A light moisturizer before sleep works with your body's natural repair cycle. You'll notice clearer, smoother skin within 2–3 weeks of doing this consistently.
+    </div>
+  </div>
+
+  <div class="card warn">
+    <div class="card-header">
+      <span class="icon">📵</span>
+      <span class="card-title">Phone away 30 min before sleep</span>
+      <span class="time-badge">Important</span>
+    </div>
+    <div class="card-body">
+      This is hygiene too — sleep hygiene. Blue light from screens tells your brain it's daytime, suppresses melatonin, and delays sleep by up to 2 hours. Poor sleep causes more acne, more body odor, worse skin, and slower thinking the next day. Everything connects.
+      <br><br>
+      <span class="tag t-red">Bad sleep = worse skin + worse everything</span>
+    </div>
+  </div>
+</div>
+
+<!-- WEEKLY -->
+<div id="weekly" class="panel">
+  <div class="section-label">Weekly schedule</div>
+
+  <div class="weekly-grid">
+    <div class="card">
+      <div class="card-header"><span class="icon">💇</span><span class="card-title">Hair wash</span></div>
+      <div class="card-body" style="font-size:13px;color:#555;">
+        <strong>2–3x per week</strong> — not daily. Daily washing strips natural oils, makes scalp produce more oil, and causes dandruff over time. Wash Monday, Wednesday, Saturday for example.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="icon">✂️</span><span class="card-title">Nail trim</span></div>
+      <div class="card-body" style="font-size:13px;color:#555;">
+        <strong>Once a week</strong> — both hands and feet. Dirty nails carry more bacteria than a toilet seat. People notice this, especially when you're talking or gesturing.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="icon">👅</span><span class="card-title">Tongue scraper</span></div>
+      <div class="card-body" style="font-size:13px;color:#555;">
+        <strong>Daily or weekly</strong> — if you don't have one, use your toothbrush on your tongue. Removes the white coating that causes 80% of bad breath.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="icon">👕</span><span class="card-title">Clean clothes</span></div>
+      <div class="card-body" style="font-size:13px;color:#555;">
+        <strong>Underwear daily</strong> — non-negotiable. Socks daily. Outer clothes every 2 days minimum. Wearing clean-smelling clothes after a shower and then putting on yesterday's shirt cancels everything.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="icon">🛏️</span><span class="card-title">Pillowcase change</span></div>
+      <div class="card-body" style="font-size:13px;color:#555;">
+        <strong>Every 3–4 days</strong> — your face presses on this for 7 hours. Sweat, oil, bacteria transfer directly to skin. This single habit reduces acne significantly.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="icon">🏃</span><span class="card-title">Exercise</span></div>
+      <div class="card-body" style="font-size:13px;color:#555;">
+        <strong>3–5x per week</strong> — sweating flushes pores. Exercise improves skin, reduces body odor long-term by improving metabolism, and regulates hormones that cause acne.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:10px;">
+    <div class="card-header"><span class="icon">💧</span><span class="card-title">Water intake — daily</span></div>
+    <div class="card-body">
+      8 glasses (2 litres) minimum per day. Dehydration is the hidden cause behind most teenage acne, body odor, and fatigue. If your urine is dark yellow — drink more. It should be pale yellow or clear.
+      <br><br>
+      <span class="tag t-green">Most skin problems improve with just water</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div id="products" class="panel">
+  <div class="section-label">Products to buy — available in Nepal, affordable</div>
+
+  <div class="card highlight">
+    <div class="card-header"><span class="icon">✅</span><span class="card-title">The essential 5 — start here</span></div>
+    <div class="card-body">
+      <div class="product"><span>→</span> <strong>Face wash:</strong> Himalaya Purifying Neem Face Wash (widely available, affordable, good for acne-prone skin)</div>
+      <div class="product"><span>→</span> <strong>Body wash/soap:</strong> Dove Men+Care or Lifebuoy (better than just regular soap for odor)</div>
+      <div class="product"><span>→</span> <strong>Deodorant:</strong> Axe, Nivea Men, or Rexona roll-on — roll-on lasts longer than spray</div>
+      <div class="product"><span>→</span> <strong>Toothbrush + toothpaste:</strong> Any fluoride toothpaste. Replace toothbrush every 2–3 months.</div>
+      <div class="product"><span>→</span> <strong>Moisturizer:</strong> Himalaya Light Moisturizing Lotion or Pond's Men — light, non-greasy, affordable</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">➕</span><span class="card-title">Add later — when budget allows</span></div>
+    <div class="card-body">
+      <div class="product"><span>→</span> <strong>Mouthwash:</strong> Listerine Cool Mint — kills bacteria brushing misses</div>
+      <div class="product"><span>→</span> <strong>Floss:</strong> Any brand, Rs 100–150. One pack lasts months.</div>
+      <div class="product"><span>→</span> <strong>Tongue scraper:</strong> Rs 50–80 at any pharmacy. Biggest impact on breath.</div>
+      <div class="product"><span>→</span> <strong>Sunscreen:</strong> Lotus Herbals Safe Sun SPF 30 — if you're outdoors often. Prevents skin darkening and early aging.</div>
+      <div class="product"><span>→</span> <strong>Hair conditioner:</strong> Use after shampoo on hair only, not scalp. Reduces breakage and dryness.</div>
+    </div>
+  </div>
+
+  <div class="card warn">
+    <div class="card-header"><span class="icon">⚠️</span><span class="card-title">Things to avoid</span></div>
+    <div class="card-body">
+      <div class="product"><span>→</span> Don't use body soap on your face — too harsh, causes dryness and more acne</div>
+      <div class="product"><span>→</span> Don't use too much product — more is not better with skincare</div>
+      <div class="product"><span>→</span> Don't skip moisturizer thinking oily skin doesn't need it — it does</div>
+      <div class="product"><span>→</span> Don't wash hair daily — damages it over time</div>
+      <div class="product"><span>→</span> Don't pop pimples — causes permanent scarring</div>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <p class="rule-title">The real secret nobody tells you</p>
+    <div class="rule"><span>→</span> Consistency beats products. A Rs 100 routine done daily beats a Rs 1000 routine done randomly.</div>
+    <div class="rule"><span>→</span> Sleep, water, and exercise affect your skin and odor more than any product you can buy.</div>
+    <div class="rule"><span>→</span> The goal isn't to smell like a perfume shop. It's to have zero odor. Clean is the target.</div>
+    <div class="rule"><span>→</span> Hygiene is respect — for yourself and for every person you talk to.</div>
+  </div>
+</div>
+
+<script>
+function show(tab) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  event.target.classList.add('active');
+}
+function toggle(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+</script>
+</body>
+</html>
